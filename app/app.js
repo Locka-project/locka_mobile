@@ -2,7 +2,8 @@ import './theme';
 import { router, route } from 'reapp-kit';
 
 router(require,
-  route('home', '/',
-    route('sub')
+  route('app', '/', { dir: '' },
+    route('home'),
+    route('login')
   )
 );

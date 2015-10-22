@@ -1,29 +1,18 @@
-import { Reapp, React, NestedViewList, View, Button } from 'reapp-kit';
+import { React, View, BackButton } from 'reapp-kit';
 
 class Home extends React.Component {
   render() {
+    const backButton =
+      <BackButton onTap={() => window.history.back()} />
+
     return (
-      <NestedViewList {...this.props.viewListProps}>
-        <View title="locka_mobile">
-          <p>Hello, World!</p>
-
-          <Button onTap={() => this.router().transitionTo('sub')}>
-            Go to sub view
-          </Button>
-        </View>
-
-        {this.props.child()}
-      </NestedViewList>
+      <View {...this.props} title="Sub Route" titleLeft={backButton}>
+        <p>Hello, from the sub route!</p>
+        <p>You can drag from the left side of the screen to drag this view back out</p>
+        <p>Ready to deploy? Run <code>reapp build</code> and check your build directory</p>
+      </View>
     );
   }
 }
 
-export default Reapp(Home);
-
-/*
- This is your root route. When you wrap it with Reapp()
- it passes your class two properties:
-
-  - viewListProps: Passes the scrollToStep to your ViewList so it animates
-  - child: The child route
-*/
+export default Home;
