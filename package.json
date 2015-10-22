@@ -11,6 +11,8 @@
     "start": "reapp run"
   },
   "dependencies": {
+    "immutable": "^3.7.5",
+    "lodash": "^3.10.1",
     "react": "0.13.2",
     "reapp-kit": "^1.2.0"
   }

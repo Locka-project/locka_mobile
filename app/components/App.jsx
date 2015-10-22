@@ -1,5 +1,4 @@
-import { Reapp, React, NestedViewList, View, Button } from 'reapp-kit';
-
+import { Reapp, NestedViewList, View, Button } from 'reapp-kit';
 
 class App extends React.Component {
 
@@ -13,7 +12,7 @@ class App extends React.Component {
         <View title="locka_mobile">
           <p>Hello, World!</p>
 
-          <Button onTap={() => }>
+          <Button onTap={() => this.router().transitionTo('login')}>
             Go to Login
           </Button>
         </View>

@@ -1,4 +1,4 @@
-import { React, View, BackButton } from 'reapp-kit';
+import { View, BackButton } from 'reapp-kit';
 
 class Home extends React.Component {
   render() {
