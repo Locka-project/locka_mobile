@@ -1,17 +1,36 @@
-import { View, BackButton } from 'reapp-kit';
+import { View, List } from 'reapp-kit';
+import UsersStore from '../stores/UsersStore';
+import UsersActions from '../actions/UsersActions';
 
 class Home extends React.Component {
-  render() {
-    const backButton =
-      <BackButton onTap={() => window.history.back()} />
 
+  componentDidMount() {
+    UsersStore.listen(this.onChange);
+    console.log('didMount');
+    UsersActions.fetchUsers();
+  }
+
+  componentWillUnmount() {
+    UsersStore.unlisten(this.onChange);
+  }
+
+  render() {
+    const users = alt.stores.UsersStore.getUsers();
+    const usersNodes = users.map( (user) => {
+      return <List.Item title={user.get('name')}/>;
+    });
     return (
-      <View {...this.props} title="Sub Route" titleLeft={backButton}>
-        <p>Hello, from the sub route!</p>
-        <p>You can drag from the left side of the screen to drag this view back out</p>
-        <p>Ready to deploy? Run <code>reapp build</code> and check your build directory</p>
+      <View {...this.props} title="Users">
+        <p>Home page</p>
+        <List>
+          {usersNodes}
+        </List>
       </View>
     );
+  }
+
+  onChange() {
+    this.forceUpdate();
   }
 }
 

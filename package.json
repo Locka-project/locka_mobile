@@ -11,6 +11,7 @@
     "start": "reapp run"
   },
   "dependencies": {
+    "alt": "^0.17.4",
     "immutable": "^3.7.5",
     "lodash": "^3.10.1",
     "react": "0.13.2",
