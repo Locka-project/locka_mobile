@@ -1,4 +1,6 @@
 import { Reapp, View, List, Input } from 'reapp-kit';
+import UsersActions from '../actions/UsersActions';
+import UsersStore from '../stores/UsersStore';
 
 const styles = {
   container: {
@@ -14,15 +16,24 @@ const styles = {
 };
 
 class Login extends React.Component {
+
+  componentDidMount() {
+    UsersStore.listen(this.onChange);
+  }
+
+  componentWillUnmount() {
+    UsersStore.unlisten(this.onChange);
+  }
+
   render() {
     return (
       <View>
         <div className="fullscreen" style={styles.container}>
-          <h1 style={styles.icon}>👯</h1>
+          <h1 style={styles.icon}>{'👯'}</h1>
           <form style={styles.form}>
             <List wrap>
-              <Input type="text" placeholder="Username" />
-              <Input type="text" placeholder="Password"/>
+              <Input type="text" ref="username" placeholder="Username" />
+              <Input type="password" ref="password" placeholder="Password"/>
             </List>
             <br/>
             <List>
@@ -35,9 +46,20 @@ class Login extends React.Component {
   }
 
   login() {
-    this.router().transitionTo('home');
+    console.log('logginin');
+    const username = this.refs.username.getDOMNode().value;
+    const password = this.refs.password.getDOMNode().value;
+    UsersActions.login({username, password});
+  }
+
+  onChange() {
+    const currentUser = alt.stores.UsersStore.getCurrentUser();
+    if (currentUser.size !== 0) {
+      console.log('user logged');
+      this.router().transitionTo('home');
+    }
   }
 }
 
 
-export default Reapp(Login);
+export default Login;

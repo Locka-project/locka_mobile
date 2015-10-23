@@ -1,6 +1,7 @@
-import { View, List } from 'reapp-kit';
+import { Reapp, View, List } from 'reapp-kit';
 import UsersStore from '../stores/UsersStore';
 import UsersActions from '../actions/UsersActions';
+import AuthRequired from '../mixins/AuthRequired';
 
 class Home extends React.Component {
 
@@ -16,10 +17,10 @@ class Home extends React.Component {
   render() {
     const users = alt.stores.UsersStore.getUsers();
     const usersNodes = users.map( (user) => {
-      return <List.Item title={user.get('name')}/>;
+      return <List.Item title={user.get('username')}/>;
     });
     return (
-      <View {...this.props} title="Users">
+      <View {...this.props} title="Home">
         <p>Home page</p>
         <List>
           {usersNodes}
@@ -33,4 +34,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default AuthRequired(Home);

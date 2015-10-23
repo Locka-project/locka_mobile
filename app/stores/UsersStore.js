@@ -6,20 +6,27 @@ class UsersStore {
 
     this.state = Immutable.fromJS({
       users: [],
+      currentUser: {},
     });
   }
 
-  onFetchUsersStart() {
-    this.setState({users: Immutable.List()});
+  onUpdateUsers(users) {
+    this.setState(this.state.set('users', this.state.get('users').merge(users)));
   }
 
-  onUpdateUsers(users) {
-    this.setState(this.state.set('users', users));
+  onLoginSuccess(user) {
+    this.setState(this.state.set('currentUser', user)
+      .set('users', this.state.get('users').merge([user])));
   }
 
   static getUsers() {
     return this.getState().get('users');
   }
+
+  static getCurrentUser() {
+    return this.getState().get('currentUser');
+  }
+
 }
 
 export default alt.createStore(UsersStore, 'UsersStore');

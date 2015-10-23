@@ -1,26 +1,17 @@
-import { Reapp, NestedViewList, View, Button } from 'reapp-kit';
+import { Reapp } from 'reapp-kit';
+import Theme from 'reapp-ui/helpers/Theme';
+import iOSTheme from 'reapp-ui/themes/ios/theme';
 
 class App extends React.Component {
 
-  componentWillMount() {
-    // this.router().transitionTo('login');
-  }
-
   render() {
     return (
-      <NestedViewList {...this.props.viewListProps}>
-        <View title="locka_mobile">
-          <p>Hello, World!</p>
-
-          <Button onTap={() => this.router().transitionTo('login')}>
-            Go to Login
-          </Button>
-        </View>
-
+      <Theme {...iOSTheme}>
         {this.props.child()}
-      </NestedViewList>
+      </Theme>
     );
   }
+
 }
 
 export default Reapp(App);

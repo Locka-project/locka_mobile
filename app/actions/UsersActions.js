@@ -2,18 +2,24 @@ class UsersActions {
 
   constructor() {
     this.generateActions(
-      'fetchUsersStart',
       'updateUsers',
+      'onLoginSuccess',
     );
   }
 
   fetchUsers() {
-    console.log('fetching users');
-    this.actions.fetchUsersStart();
     setTimeout( () => {
-      const users = Immutable.fromJS([{name: 'John'}, {name: 'Damdam'}, {name: 'Remi'}]);
+      const users = Immutable.fromJS([{username: 'John'}, {username: 'Damdam'}, {username: 'Remi'}]);
       this.actions.updateUsers(users);
-    }, 3000);
+    }, 2000);
+  }
+
+  login({username, password}) {
+    const user = Immutable.fromJS({username: username, password: password});
+    this.dispatch(user);
+    setTimeout( () => {
+      this.actions.onLoginSuccess(user);
+    }, 500);
   }
 
   updateUsers(users) {

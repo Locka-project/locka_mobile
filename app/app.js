@@ -12,7 +12,7 @@ window.alt = new Alt();
 
 router(require,
   route('app', '/', { dir: '' },
-    route('home'),
+    route('home', { default: true }),
     route('login')
   )
 );

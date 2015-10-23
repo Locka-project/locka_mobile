@@ -21,6 +21,7 @@
     "immutable": "^3.7.5",
     "lodash": "^3.10.1",
     "react": "0.13.2",
-    "reapp-kit": "^1.2.0"
+    "reapp-kit": "^1.2.0",
+    "reapp-ui": "^0.12.54"
   }
 }
