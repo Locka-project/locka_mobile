@@ -8,7 +8,13 @@
   "reapp": "0.8",
   "scripts": {
     "test": "",
-    "start": "reapp run"
+    "start": "reapp run",
+    "lint": "eslint app --ext .jsx --ext .js"
+  },
+  "devDependencies": {
+    "babel-eslint": "^3.1.9",
+    "eslint": "^1.3.1",
+    "eslint-plugin-react": "^2.3.0"
   },
   "dependencies": {
     "alt": "^0.17.4",

@@ -1,12 +1,11 @@
-
-import UsersActions from '../actions/UsersActions'
+import UsersActions from '../actions/UsersActions';
 
 class UsersStore {
   constructor() {
     this.bindActions(UsersActions);
 
     this.state = Immutable.fromJS({
-      users: []
+      users: [],
     });
   }
 

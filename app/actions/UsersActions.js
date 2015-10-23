@@ -1,4 +1,3 @@
-
 class UsersActions {
 
   constructor() {
@@ -11,17 +10,15 @@ class UsersActions {
   fetchUsers() {
     console.log('fetching users');
     this.actions.fetchUsersStart();
-    setTimeout(function () {
-      const users = Immutable.fromJS([{name:'John'}, {name:'Damdam'}, {name:'Remi'}]);
+    setTimeout( () => {
+      const users = Immutable.fromJS([{name: 'John'}, {name: 'Damdam'}, {name: 'Remi'}]);
       this.actions.updateUsers(users);
-    }.bind(this), 3000);
+    }, 3000);
   }
 
   updateUsers(users) {
-    console.log('updating users');
     this.dispatch(users);
   }
-
 
 }
 

@@ -6,7 +6,6 @@ class Home extends React.Component {
 
   componentDidMount() {
     UsersStore.listen(this.onChange);
-    console.log('didMount');
     UsersActions.fetchUsers();
   }
 

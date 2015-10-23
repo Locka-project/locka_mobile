@@ -7,11 +7,11 @@ theme({
   constants: [
     iOS.constants.base,
     iOS.constants.components,
-    components
+    components,
   ],
   styles: [
     iOS.styles,
-    styles
+    styles,
   ],
-  animations: [iOS.animations]
+  animations: [iOS.animations],
 });
