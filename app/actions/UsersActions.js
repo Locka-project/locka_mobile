@@ -3,7 +3,9 @@ class UsersActions {
   constructor() {
     this.generateActions(
       'updateUsers',
+      'onLoginStart',
       'onLoginSuccess',
+      'onLoginFailed',
     );
   }
 
@@ -15,15 +17,28 @@ class UsersActions {
   }
 
   login({username, password}) {
-    const user = Immutable.fromJS({username: username, password: password});
-    this.dispatch(user);
-    setTimeout( () => {
-      this.actions.onLoginSuccess(user);
-    }, 500);
+    this.actions.onLoginStart();
+    this.dispatch();
+    Api.post('/auth/local', {username, password, api: true})
+      .then( (response) => {
+        console.log('response:', response);
+        // const user = Immutable.fromJS({username: username, password: password});
+        // this.dispatch(user);
+        // setTimeout( () => {
+        //   this.actions.onLoginSuccess(user);
+        // }, 500);
+      }, (error) => {
+        console.log('error:', error);
+        this.actions.onLoginFailed();
+      });
   }
 
   updateUsers(users) {
     this.dispatch(users);
+  }
+
+  logout() {
+    console.log('logging out');
   }
 
 }

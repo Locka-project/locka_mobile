@@ -37,7 +37,7 @@ class Login extends React.Component {
             </List>
             <br/>
             <List>
-              <List.Item icon={true} title="Login" onTap={this.login.bind(this)} />
+              <List.Item icon={true} title="Login" onClick={this.login.bind(this)} />
             </List>
           </form>
         </div>
@@ -46,6 +46,8 @@ class Login extends React.Component {
   }
 
   login() {
+    const status = alt.stores.UsersStore.getStatus();
+    if (status === 'logging') { return; }
     console.log('logginin');
     const username = this.refs.username.getDOMNode().value;
     const password = this.refs.password.getDOMNode().value;
