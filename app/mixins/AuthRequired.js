@@ -1,5 +1,3 @@
-import { Reapp } from 'reapp-kit';
-
 export default (ComposedComponent) => {
   return class AuthRequiredComponent extends React.Component {
 

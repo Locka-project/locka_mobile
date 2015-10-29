@@ -5,24 +5,19 @@ class UsersStore {
     this.bindActions(UsersActions);
 
     this.state = Immutable.fromJS({
-      users: [],
       currentUser: {},
-      status: '',
       authToken: null,
+      status: '',
     });
-  }
-
-  onUpdateUsers(users) {
-    this.setState(this.state.set('users', this.state.get('users').merge(users)));
   }
 
   onLoginStart() {
     this.setState(this.state.set('status', 'logging'));
   }
 
-  onLoginSuccess(user) {
+  onLoginSuccess({user, token}) {
     this.setState(this.state.set('currentUser', user)
-      .set('users', this.state.get('users').merge([user]))
+      .set('authToken', token)
       .set('status', ''));
   }
 
@@ -32,10 +27,6 @@ class UsersStore {
 
   static getStatus() {
     return this.getState().get('status');
-  }
-
-  static getUsers() {
-    return this.getState().get('users');
   }
 
   static getCurrentUser() {

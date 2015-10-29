@@ -2,39 +2,24 @@ class UsersActions {
 
   constructor() {
     this.generateActions(
-      'updateUsers',
-      'onLoginStart',
-      'onLoginSuccess',
-      'onLoginFailed',
+      'loginStart',
+      'loginSuccess',
+      'loginFailed',
     );
   }
 
-  fetchUsers() {
-    setTimeout( () => {
-      const users = Immutable.fromJS([{username: 'John'}, {username: 'Damdam'}, {username: 'Remi'}]);
-      this.actions.updateUsers(users);
-    }, 2000);
-  }
-
-  login({username, password}) {
-    this.actions.onLoginStart();
-    this.dispatch();
-    Api.post('/auth/local', {username, password, api: true})
-      .then( (response) => {
-        console.log('response:', response);
-        // const user = Immutable.fromJS({username: username, password: password});
-        // this.dispatch(user);
-        // setTimeout( () => {
-        //   this.actions.onLoginSuccess(user);
-        // }, 500);
-      }, (error) => {
-        console.log('error:', error);
-        this.actions.onLoginFailed();
-      });
-  }
-
-  updateUsers(users) {
-    this.dispatch(users);
+  login({identifier, password}) {
+    this.actions.loginStart();
+    this.dispatch('logging');
+    Api.post('/auth/local/', {identifier, password, api: true})
+    .then( (response) => {
+      const token = response.get('token');
+      const user = response.get('user');
+      this.dispatch({user, token});
+      this.actions.loginSuccess({user, token});
+    }, (error) => {
+      this.actions.loginFailed(error);
+    });
   }
 
   logout() {

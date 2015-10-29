@@ -1,5 +1,4 @@
-import { Reapp, View, List, Input } from 'reapp-kit';
-import UsersActions from '../actions/UsersActions';
+import { View, List, Input } from 'reapp-kit';
 import UsersStore from '../stores/UsersStore';
 
 const styles = {
@@ -26,14 +25,16 @@ class Login extends React.Component {
   }
 
   render() {
+    const status = alt.stores.UsersStore.getStatus();
     return (
       <View>
         <div className="fullscreen" style={styles.container}>
           <h1 style={styles.icon}>{'👯'}</h1>
+          <p>{status}</p>
           <form style={styles.form}>
             <List wrap>
-              <Input type="text" ref="username" placeholder="Username" />
-              <Input type="password" ref="password" placeholder="Password"/>
+              <Input type="text" ref="identifier" placeholder="Username" value="plop"/>
+              <Input type="password" ref="password" placeholder="Password" value="password"/>
             </List>
             <br/>
             <List>
@@ -48,17 +49,17 @@ class Login extends React.Component {
   login() {
     const status = alt.stores.UsersStore.getStatus();
     if (status === 'logging') { return; }
-    console.log('logginin');
-    const username = this.refs.username.getDOMNode().value;
+    const identifier = this.refs.identifier.getDOMNode().value;
     const password = this.refs.password.getDOMNode().value;
-    UsersActions.login({username, password});
+    alt.actions.UsersActions.login({identifier, password});
   }
 
   onChange() {
     const currentUser = alt.stores.UsersStore.getCurrentUser();
     if (currentUser.size !== 0) {
-      console.log('user logged');
       this.router().transitionTo('home');
+    } else {
+      this.forceUpdate();
     }
   }
 }

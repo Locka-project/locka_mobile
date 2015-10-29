@@ -1,3 +1,4 @@
+
 class Api {
 
   static apiFetch(method, path, params) {
@@ -7,16 +8,33 @@ class Api {
       'Content-Type': 'application/json',
     };
 
+    let url = `${CONFIG.API_URL}${path}`;
+    params.api = 'true';
+
     const authToken = alt.stores.UsersStore.getAuthenticationToken();
     if (authToken) {
-      headers.Authorization = `Token token=${authToken}`;
+      headers.Authorization = `Bearer ${authToken}`;
     }
-    params.api = 'true';
-    return fetch(`${CONFIG.API_URL}${path}`, {
+
+    if (method === 'GET') {
+      params = _.map(params, (value, key) => {
+        if (Array.isArray(value)) {
+          return _.map(value, (v) => {
+            return `${key}[]=${v}`;
+          }).join('&');
+        }
+        return `${key}=${value}`;
+      }).join('&');
+      params = encodeURI(params);
+      url = `${url}?${params}`;
+      params = null;
+    }
+
+    return fetch(url, {
       method: method,
       headers: headers,
       credentials: 'include',
-      body: JSON.stringify(params),
+      body: params ? JSON.stringify(params) : null,
     }).then( (response) => {
       if (response.status === 401) {
         alt.actions.UsersActions.logout();
@@ -26,28 +44,24 @@ class Api {
       }
       return response.json();
     }).then( (json) => {
-      return new Promise((resolve) => {
-        React.InteractionManager.runAfterInteractions(() => {
-          resolve(Immutable.fromJS(json));
-        });
-      });
+      return Immutable.fromJS(json);
     });
   }
 
   static get(path, params) {
-    return this.fetch('GET', path, params);
+    return this.apiFetch('GET', path, params);
   }
 
   static post(path, params) {
-    return this.fetch('POST', path, params);
+    return this.apiFetch('POST', path, params);
   }
 
   static put(path, params) {
-    return this.fetch('PUT', path, params);
+    return this.apiFetch('PUT', path, params);
   }
 
   static delete(path, params) {
-    return this.fetch('DELETE', path, params);
+    return this.apiFetch('DELETE', path, params);
   }
 
 }
