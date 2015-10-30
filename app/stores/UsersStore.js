@@ -1,14 +1,19 @@
 import UsersActions from '../actions/UsersActions';
+import localstorage from 'localstorage';
 
 class UsersStore {
   constructor() {
     this.bindActions(UsersActions);
-
-    this.state = Immutable.fromJS({
-      currentUser: {},
-      authToken: null,
-      status: '',
-    });
+    const savedUsersStore = localstorage.getItem('UsersStore');
+    if (savedUsersStore) {
+      this.state = Immutable.fromJS(JSON.parse(savedUsersStore).UsersStore);
+    } else {
+      this.state = Immutable.fromJS({
+        currentUser: null,
+        authToken: null,
+        status: '',
+      });
+    }
   }
 
   onLoginStart() {
@@ -19,10 +24,22 @@ class UsersStore {
     this.setState(this.state.set('currentUser', user)
       .set('authToken', token)
       .set('status', ''));
+    this.saveStore();
   }
 
   onLoginFailed() {
     this.setState(this.state.set('status', 'failed'));
+  }
+
+  onLogout() {
+    this.setState(this.state.set('currentUser', null)
+      .set('authToken', null)
+      .set('status', ''));
+    this.saveStore();
+  }
+
+  saveStore() {
+    localstorage.setItem('UsersStore', alt.takeSnapshot(alt.stores.UsersStore));
   }
 
   static getStatus() {

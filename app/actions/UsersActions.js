@@ -4,7 +4,8 @@ class UsersActions {
     this.generateActions(
       'loginStart',
       'loginSuccess',
-      'loginFailed'
+      'loginFailed',
+      'logout'
     );
   }
 
@@ -20,10 +21,6 @@ class UsersActions {
     }, (error) => {
       this.actions.loginFailed(error);
     });
-  }
-
-  logout() {
-    console.log('logging out');
   }
 
 }

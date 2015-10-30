@@ -31,8 +31,9 @@ class DeviceNew extends React.Component {
   createDevice() {
     const currentUser = alt.stores.UsersStore.getCurrentUser();
     const deviceName = this.refs.name.getDOMNode().value;
-    alt.actions.DevicesActions.createDevice({deviceName, currentUser});
-    window.history.back();
+    alt.actions.DevicesActions.createDevice({deviceName, currentUser}).then( () => {
+      window.history.back();
+    });
   }
 }
 

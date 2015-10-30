@@ -2,10 +2,10 @@ export default (ComposedComponent) => {
   return class AuthRequiredComponent extends React.Component {
 
     static willTransitionTo(transition) {
-      console.log('trying to redirect to ' + transition.path);
-      if (alt.stores.UsersStore.getCurrentUser().size === 0) {
+      console.log('Transition to ' + transition.path, alt.stores.UsersStore.getCurrentUser());
+      if (!alt.stores.UsersStore.getCurrentUser()) {
         console.log('force login');
-        // transition.redirect('login');
+        transition.redirect('login');
       }
     }
 

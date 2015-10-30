@@ -34,7 +34,6 @@ class Api {
       credentials: 'include',
       body: params ? JSON.stringify(params) : null,
     }).then( (response) => {
-      console.log('res', response);
       if (response.status === 401) {
         alt.actions.UsersActions.logout();
         return Promise.reject(response);

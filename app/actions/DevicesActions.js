@@ -8,7 +8,7 @@ class DevicesActions {
   }
 
   fetchDevices() {
-    Api.get('/api/device/getAllDevices', {})
+    return Api.get('/api/device/getAllDevices', {})
     .then( (devices) => {
       this.actions.fetchDevicesSuccess({devices});
     }, (error) => {
@@ -17,13 +17,12 @@ class DevicesActions {
   }
 
   createDevice({deviceName, currentUser}) {
-    Api.post('/api/device/create', {name:deviceName, user:currentUser})
-      .then( (device) => {
-        this.dispatch([device]);
-        this.actions.createDeviceSuccess({device});
-      }, (error) => {
-          console.log('error creating device', error);
-      });
+    return Api.post('/api/device/create', {name: deviceName, user: currentUser})
+    .then( (device) => {
+      this.actions.createDeviceSuccess({device});
+    }, (error) => {
+      console.log('error creating device', error);
+    });
   }
 
 }
