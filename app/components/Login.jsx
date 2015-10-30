@@ -56,7 +56,7 @@ class Login extends React.Component {
 
   onChange() {
     const currentUser = alt.stores.UsersStore.getCurrentUser();
-    if (currentUser.size !== 0) {
+    if (currentUser) {
       this.router().transitionTo('home');
     } else {
       this.forceUpdate();

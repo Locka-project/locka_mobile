@@ -19,6 +19,7 @@
   "dependencies": {
     "alt": "^0.17.4",
     "immutable": "^3.7.5",
+    "localStorage": "^1.0.3",
     "lodash": "^3.10.1",
     "react": "0.13.2",
     "reapp-kit": "^1.2.0",
