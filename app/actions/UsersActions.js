@@ -4,7 +4,7 @@ class UsersActions {
     this.generateActions(
       'loginStart',
       'loginSuccess',
-      'loginFailed',
+      'loginFailed'
     );
   }
 

@@ -10,6 +10,10 @@ class DevicesStore {
     this.setState(devices);
   }
 
+  onCreateDeviceSuccess({device}) {
+    this.setState(this.state.push(device));
+  }
+
   static getDevices() {
     return this.getState();
   }
