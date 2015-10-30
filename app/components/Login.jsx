@@ -33,8 +33,8 @@ class Login extends React.Component {
           <p>{status}</p>
           <form style={styles.form}>
             <List wrap>
-              <Input type="text" ref="identifier" placeholder="Username" value="plop"/>
-              <Input type="password" ref="password" placeholder="Password" value="password"/>
+              <Input type="text" ref="identifier" placeholder="Username"/>
+              <Input type="password" ref="password" placeholder="Password"/>
             </List>
             <br/>
             <List>

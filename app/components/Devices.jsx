@@ -1,5 +1,5 @@
 import { View } from 'reapp-kit';
-import DevicesList from './home/DevicesList';
+import DevicesList from './devices/DevicesList';
 
 class Devices extends React.Component {
 

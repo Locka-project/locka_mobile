@@ -1,5 +1,6 @@
 import { List } from 'reapp-kit';
 import DevicesStore from '../../stores/DevicesStore';
+import DeviceItem from './DeviceItem';
 
 class DevicesList extends React.Component {
 
@@ -15,7 +16,7 @@ class DevicesList extends React.Component {
   render() {
     const devices = alt.stores.DevicesStore.getDevices();
     const devicesNodes = devices.map( (device) => {
-      return <List.Item key={device.get('name')} title={device.get('name')}/>;
+      return <DeviceItem device={device}/>;
     });
 
     return (
