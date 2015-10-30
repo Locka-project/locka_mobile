@@ -11,7 +11,7 @@ class DevicesStore {
   }
 
   onCreateDeviceSuccess({device}) {
-    this.setState(this.state.push(device));
+    this.setState(alt.stores.DevicesStore.getDevices().push(device));
   }
 
   static getDevices() {
