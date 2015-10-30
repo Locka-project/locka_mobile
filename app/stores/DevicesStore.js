@@ -18,6 +18,12 @@ class DevicesStore {
     return this.getState();
   }
 
+  static get(deviceId){
+    return this.getState().find((device) => {
+      return device.get('id') == deviceId;
+    })
+  }
+
 }
 
 export default alt.createStore(DevicesStore, 'DevicesStore');
