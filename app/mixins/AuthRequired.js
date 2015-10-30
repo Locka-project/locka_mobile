@@ -5,7 +5,7 @@ export default (ComposedComponent) => {
       console.log('trying to redirect to ' + transition.path);
       if (alt.stores.UsersStore.getCurrentUser().size === 0) {
         console.log('force login');
-        transition.redirect('login');
+        // transition.redirect('login');
       }
     }
 

@@ -1,15 +1,24 @@
-import { View } from 'reapp-kit';
+import { Reapp, NestedViewList, View, Button } from 'reapp-kit';
 import DevicesList from './devices/DevicesList';
 
 class Devices extends React.Component {
 
   render() {
+
+    var addButton = <Button chromeless onTap={this.showNewDevicePage.bind(this)}>Add</Button>;
     return (
-      <View {...this.props} title="Devices">
-        <DevicesList />
-      </View>
+      <div>
+          <View title={['', 'Devices', addButton]}>
+            <DevicesList />
+          </View>
+          {this.props.child()}
+      </div>
     );
+  }
+
+  showNewDevicePage() {
+    this.router().transitionTo('deviceNew');
   }
 }
 
-export default Devices;
+export default Reapp(Devices);

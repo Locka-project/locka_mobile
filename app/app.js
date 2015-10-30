@@ -25,7 +25,11 @@ window.Api = Api;
 
 router(require,
   route('app', '/', { dir: '' },
-    route('home', { dir: '', default: true }),
+    route('home', '/', { dir: '' },
+     route('devices', '/',
+       route('deviceNew', '/create')
+     )
+    ),
     route('login')
   )
 );
