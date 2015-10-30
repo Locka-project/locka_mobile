@@ -25,7 +25,7 @@ window.Api = Api;
 
 router(require,
   route('app', '/', { dir: '' },
-    route('home', { default: true }),
+    route('home', { dir: '', default: true }),
     route('login')
   )
 );
