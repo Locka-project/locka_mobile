@@ -2,7 +2,8 @@ class DevicesActions {
 
   constructor() {
     this.generateActions(
-      'fetchDevicesSuccess'
+      'fetchDevicesSuccess',
+      'createDeviceSuccess'
     );
   }
 
@@ -13,6 +14,16 @@ class DevicesActions {
     }, (error) => {
       console.log('error:', error);
     });
+  }
+
+  createDevice({deviceName, currentUser}) {
+    Api.post('/api/device/create', {name:deviceName, user:currentUser})
+      .then( (device) => {
+        this.dispatch([device]);
+        this.actions.createDeviceSuccess({device});
+      }, (error) => {
+          console.log('error creating device', error);
+      });
   }
 
 }
