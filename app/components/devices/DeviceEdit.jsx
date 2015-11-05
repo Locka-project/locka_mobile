@@ -20,9 +20,10 @@ class DeviceEdit extends React.Component {
       <BackButton onTap={() => window.history.back()} stopPropagation>
         Back
       </BackButton>
+    var deleteButton = <Button chromeless onTap={ () => {this.deleteDevice(deviceId)} }>Delete</Button>;
 
     return (
-      <View title={[backButton, device.get('name'), '']}>
+      <View title={[backButton, device.get('name'), deleteButton]}>
         <div>
           <form>
             <Title>Name</Title>
@@ -45,6 +46,11 @@ class DeviceEdit extends React.Component {
 
   onChange() {
     this.forceUpdate();
+  }
+
+  deleteDevice(deviceId) {
+    alt.actions.DevicesActions.deleteDevice( {deviceId} )
+    window.history.back();
   }
 
   onCheck(closed) {
