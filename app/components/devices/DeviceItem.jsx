@@ -1,4 +1,4 @@
-import { View, Button, BackButton, Input, List, Title } from 'reapp-kit';
+import { View, Button, BackButton, Input, Label, List, Title } from 'reapp-kit';
 
 class DeviceItem extends React.Component {
 
@@ -6,9 +6,11 @@ class DeviceItem extends React.Component {
     const device = this.props.device;
 
     return (
-      <List wrap>
-        <Input type="checkbox" label={device.get('name')} onChange={this.onCheck} checked={ device.get('state')=='open' } />
-      </List>
+      <List.Item title={<Label onClick={this.editDevicePage.bind(this)}>{device.get('name')}</Label>}
+                 titleAfter={<Input type="checkbox" onChange={this.onCheck} checked={ device.get('state')=='open' } />}
+        >
+
+      </List.Item>
     );
   }
 
