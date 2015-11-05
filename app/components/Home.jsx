@@ -27,14 +27,14 @@ class Home extends React.Component {
         offsetBottom={49}
         disableScroll={true}
         after={
-          <Bar>
-            <BarItem active={this.state.activeTab === 0}
+          <Bar activeIndex={this.state.activeTab}>
+            <BarItem
               icon={require('reapp-kit/icons/key.svg')}
               iconProps={{style: styles.iconStyles}}
               onTap={() => this.changeTab(0)}>
               Devices
             </BarItem>
-            <BarItem active={this.state.activeTab === 1}
+            <BarItem
               icon={require('reapp-kit/icons/phone.svg')}
               iconProps={{style: styles.iconStyles}}
               onTap={() => this.changeTab(1)}>
