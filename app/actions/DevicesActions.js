@@ -3,7 +3,8 @@ class DevicesActions {
   constructor() {
     this.generateActions(
       'fetchDevicesSuccess',
-      'createDeviceSuccess'
+      'createDeviceSuccess',
+      'editDeviceSuccess'
     );
   }
 
@@ -23,6 +24,30 @@ class DevicesActions {
     }, (error) => {
       console.log('error creating device', error);
     });
+  }
+
+  editDevice({deviceId, deviceName}){
+    return Api.put('/api/device/update', {id: deviceId, name: deviceName})
+      .then( (device) => {
+        this.actions.editDeviceSuccess({device: device.first()});
+      }, (error) => {
+        console.log('error editing device', error);
+      });
+  }
+
+  updateStateDevice({deviceId, deviceState}) {
+    var url = '/api/device/';
+    if (deviceState) {
+      url += 'open';
+    } else {
+      url += 'close';
+    }
+    return Api.put(url, {id: deviceId})
+      .then((device) => {
+        this.actions.editDeviceSuccess({device: device.first()});
+      }, (error) => {
+        console.log('error editing device', error);
+      });
   }
 
 }

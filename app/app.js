@@ -29,7 +29,8 @@ router(require,
   route('app', '/', { dir: '' },
     route('home', '/', { dir: '' },
      route('devices', '/',
-       route('deviceNew', '/create')
+       route('deviceNew', '/device/create'),
+       route('deviceEdit', '/device/edit/:deviceId')
      ),
      route('settings', '/settings')
     ),
