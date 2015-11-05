@@ -4,37 +4,37 @@ class DeviceNew extends React.Component {
 
 
   render() {
-    const deviceId = this.router().getParams().deviceId;
+    const deviceId = this.router().getCurrentParams().deviceId;
     const device = alt.stores.DevicesStore.get(deviceId);
 
     var backButton =
       <BackButton onTap={() => window.history.back()} stopPropagation>
         Back
       </BackButton>
+    var editButton = <Button chromeless onTap={this.editDevicePage.bind(this)}>Edit</Button>;
 
     return (
-      <View title={[backButton, device.get('name'), '']}>
+      <View title={[backButton, device.get('name'), editButton]}>
         <div>
-          <form>
-            <Title>Add device</Title>
-            <List wrap>
-              <Input name="name" ref="name" placeholder="Device Name" />
-            </List>
-            <br/>
-            <List>
-              <List.Item icon={true} title="Create" onClick={this.createDevice.bind(this)} />
-            </List>
-          </form>
+          <Title>Name</Title>
+          <List>
+            <List.Item
+              title={device.get('name')}>
+            </List.Item>
+          </List>
+          <Title>State</Title>
+          <List>
+            <List.Item
+              title={device.get('state')}>
+            </List.Item>
+          </List>
         </div>
       </View>
     );
   }
 
-  createDevice() {
-    const currentUser = alt.stores.UsersStore.getCurrentUser();
-    const deviceName = this.refs.name.getDOMNode().value;
-    alt.actions.DevicesActions.createDevice({deviceName, currentUser});
-    window.history.back();
+  editDevicePage() {
+    this.router().transitionTo('deviceEdit');
   }
 }
 
