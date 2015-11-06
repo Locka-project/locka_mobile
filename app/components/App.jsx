@@ -9,7 +9,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {this.props.child()}
+          {this.props.child()}
       </div>
     );
   }

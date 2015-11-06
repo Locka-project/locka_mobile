@@ -4,7 +4,7 @@ class Settings extends React.Component {
 
   render() {
     return (
-      <View {...this.props} title="Settings">
+      <View style={{overflow: 'hidden'}} title="Settings">
         <br/>
         <Button onTap={this.logout}>{"Logout"}</Button>
       </View>

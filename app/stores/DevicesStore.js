@@ -15,25 +15,29 @@ class DevicesStore {
   }
 
   onEditDeviceSuccess({device}) {
-    var newDevice = device;
-    var devices = alt.stores.DevicesStore.getDevices();
-    var index = devices.findIndex((d) => {
-      return d.get('id') == newDevice.get('id');
+    const devices = alt.stores.DevicesStore.getDevices();
+    const index = devices.findIndex((d) => {
+      return d.get('id') === device.get('id');
     });
-    var newList = devices.update(index, (oldDevice) => {
-      return newDevice;
+    this.setState(devices.update(index, () => { return device; }));
+  }
+
+  onSocketReceiveDeviceSuccess({device}) {
+    const devices = alt.stores.DevicesStore.getDevices();
+    const index = devices.findIndex((d) => {
+      return d.get('id') === device.get('id');
     });
-    this.setState(newList);
+    this.setState(devices.update(index, () => { return device; }));
   }
 
   static getDevices() {
     return this.getState();
   }
 
-  static get(deviceId){
+  static get(deviceId) {
     return this.getState().find((device) => {
-      return device.get('id') == deviceId;
-    })
+      return device.get('id') === deviceId;
+    });
   }
 
 }

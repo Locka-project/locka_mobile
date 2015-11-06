@@ -1,4 +1,4 @@
-import { View, Button, BackButton, Input, List, Title } from 'reapp-kit';
+import { View, Button, BackButton, List, Title } from 'reapp-kit';
 
 class DeviceNew extends React.Component {
 
@@ -7,14 +7,15 @@ class DeviceNew extends React.Component {
     const deviceId = this.router().getCurrentParams().deviceId;
     const device = alt.stores.DevicesStore.get(deviceId);
 
-    var backButton =
+    const backButton = (
       <BackButton onTap={() => window.history.back()} stopPropagation>
         Back
       </BackButton>
-    var editButton = <Button chromeless onTap={this.editDevicePage.bind(this)}>Edit</Button>;
+    );
+    const editButton = <Button chromeless onTap={this.editDevicePage.bind(this)}>Edit</Button>;
 
     return (
-      <View title={[backButton, device.get('name'), editButton]}>
+      <View style={{overflow: 'hidden'}} title={[backButton, device.get('name'), editButton]}>
         <div>
           <Title>Name</Title>
           <List>

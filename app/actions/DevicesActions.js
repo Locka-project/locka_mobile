@@ -4,7 +4,8 @@ class DevicesActions {
     this.generateActions(
       'fetchDevicesSuccess',
       'createDeviceSuccess',
-      'editDeviceSuccess'
+      'editDeviceSuccess',
+      'socketReceiveDeviceSuccess'
     );
   }
 
@@ -26,7 +27,7 @@ class DevicesActions {
     });
   }
 
-  editDevice({deviceId, deviceName}){
+  editDevice({deviceId, deviceName}) {
     return Api.put('/api/device/update', {id: deviceId, name: deviceName})
       .then( (device) => {
         this.actions.editDeviceSuccess({device: device.first()});
@@ -36,11 +37,9 @@ class DevicesActions {
   }
 
   updateStateDevice({deviceId, deviceState}) {
-    var url = '/api/device/';
+    let url = '/api/device/close';
     if (deviceState) {
-      url += 'open';
-    } else {
-      url += 'close';
+      url = '/api/device/open';
     }
     return Api.put(url, {id: deviceId})
       .then((device) => {

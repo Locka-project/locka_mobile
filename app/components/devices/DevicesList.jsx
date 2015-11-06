@@ -15,8 +15,8 @@ class DevicesList extends React.Component {
 
   render() {
     const devices = alt.stores.DevicesStore.getDevices();
-    const devicesNodes = devices.map( (device) => {
-      return <DeviceItem device={device}/>;
+    const devicesNodes = devices.map( (device, i) => {
+      return <DeviceItem key={i} device={device}/>;
     });
 
     return (

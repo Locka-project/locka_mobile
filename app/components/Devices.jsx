@@ -1,13 +1,12 @@
-import { Reapp, NestedViewList, View, Button } from 'reapp-kit';
+import { Reapp, View, Button } from 'reapp-kit';
 import DevicesList from './devices/DevicesList';
 
 class Devices extends React.Component {
 
   render() {
-
-    var addButton = <Button chromeless onTap={this.showNewDevicePage.bind(this)}>Add</Button>;
+    const addButton = <Button chromeless onTap={this.showNewDevicePage.bind(this)}>Add</Button>;
     return (
-      <div>
+      <div {...this.props.viewListProps}>
           <View style={{overflow: 'hidden'}} title={['', 'Devices', addButton]}>
             <DevicesList />
           </View>

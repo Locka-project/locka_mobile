@@ -4,6 +4,7 @@ import _ from 'lodash';
 import Immutable from 'immutable';
 import Alt from 'alt';
 import Api from 'api/Api';
+
 const config = {
   dev: {
     API_URL: 'http://localhost:1337',
@@ -23,7 +24,11 @@ window.Immutable = Immutable;
 window.alt = new Alt();
 window.CONFIG = config.dev;
 window.Api = Api;
-window.socket = io.sails.url = CONFIG.SOCKET_URL;
+// console.log('io', sailsIOClient);
+setTimeout(() => {
+
+}, 3000);
+
 
 router(require,
   route('app', '/', { dir: '' },

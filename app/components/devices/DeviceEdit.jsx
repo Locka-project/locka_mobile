@@ -1,4 +1,4 @@
-import { View, Button, BackButton, Input, List, Title } from 'reapp-kit';
+import { View, BackButton, Input, List, Title } from 'reapp-kit';
 import DevicesStore from '../../stores/DevicesStore';
 
 class DeviceEdit extends React.Component {
@@ -16,13 +16,14 @@ class DeviceEdit extends React.Component {
     const deviceId = this.router().getCurrentParams().deviceId;
     const device = alt.stores.DevicesStore.get(deviceId);
 
-    var backButton =
+    const backButton = (
       <BackButton onTap={() => window.history.back()} stopPropagation>
         Back
       </BackButton>
+    );
 
     return (
-      <View title={[backButton, device.get('name'), '']}>
+      <View style={{overflow: 'hidden'}} title={[backButton, device.get('name'), '']}>
         <div>
           <form>
             <Title>Name</Title>
@@ -31,7 +32,7 @@ class DeviceEdit extends React.Component {
             </List>
             <Title>State</Title>
             <List wrap>
-              <Input type="checkbox" label={ device.get('state').toUpperCase() } onChange={this.onCheck} checked={ device.get('state')=='open' } />
+              <Input type="checkbox" label={ device.get('state').toUpperCase() } onChange={this.onCheck} checked={ device.get('state') === 'open' } />
             </List>
             <br/>
             <List>
@@ -57,7 +58,6 @@ class DeviceEdit extends React.Component {
     const deviceId = this.router().getCurrentParams().deviceId;
     const deviceName = this.refs.name.getDOMNode().value;
     alt.actions.DevicesActions.editDevice({deviceId, deviceName});
-    //window.history.back();
   }
 }
 
