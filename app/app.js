@@ -25,10 +25,10 @@ window.Immutable = Immutable;
 window.alt = new Alt();
 window.CONFIG = config.dev;
 window.Api = Api;
-// console.log('io', sailsIOClient);
+
 setTimeout(() => {
   window.Socket = new Socket();
-}, 3000);
+}, 2000);
 
 
 router(require,

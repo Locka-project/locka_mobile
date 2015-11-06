@@ -25,6 +25,7 @@ class UsersStore {
       .set('authToken', token)
       .set('status', ''));
     this.saveStore();
+    Socket.subscribe();
   }
 
   onLoginFailed() {

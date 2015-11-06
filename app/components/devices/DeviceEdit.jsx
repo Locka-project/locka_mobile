@@ -1,8 +1,8 @@
-import { View, BackButton, Button, Input, List, Title } from 'reapp-kit';
+import { View, BackButton, Button, Checkbox, Input, List, Title } from 'reapp-kit';
 import DevicesStore from '../../stores/DevicesStore';
 
 class DeviceEdit extends React.Component {
-  
+
   componentDidMount() {
     DevicesStore.listen(this.onChange);
   }
@@ -35,8 +35,10 @@ class DeviceEdit extends React.Component {
               <Input name="name" ref="name" placeholder="Device Name" defaultValue={ device.get('name') }/>
             </List>
             <Title>State</Title>
-            <List wrap>
-              <Input type="checkbox" label={ device.get('state').toUpperCase() } onChange={this.onCheck} checked={ device.get('state') === 'open' } />
+            <List>
+              <List.Item title={device.get('state').toUpperCase()}
+                titleAfter={<Checkbox  onChange={this.onCheck} checked={ device.get('state') === 'open' }/>}>
+              </List.Item>
             </List>
           </form>
         </div>
