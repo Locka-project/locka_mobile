@@ -3,7 +3,7 @@ import UsersStore from '../stores/UsersStore';
 
 const styles = {
   container: {
-    background: '-webkit-linear-gradient(90deg, #ffd194 10%, #70e1f5  90%)',
+    background: '-webkit-linear-gradient(90deg, #136a8a 10%, #267871  90%)',
   },
   form: {
     marginTop: 0,

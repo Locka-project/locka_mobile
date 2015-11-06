@@ -11,7 +11,6 @@ class DeviceEdit extends React.Component {
     DevicesStore.unlisten(this.onChange);
   }
 
-
   render() {
     const deviceId = this.router().getCurrentParams().deviceId;
     const device = alt.stores.DevicesStore.get(deviceId);

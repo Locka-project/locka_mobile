@@ -36,7 +36,7 @@ class DevicesStore {
 
   static get(deviceId) {
     return this.getState().find((device) => {
-      return device.get('id') === deviceId;
+      return device.get('id') === Number.parseInt(deviceId, 0);
     });
   }
 
