@@ -11,8 +11,8 @@ class Socket {
 
   onConnect() {
     console.log('SOCKET CONNECTED');
-
-    this.io.socket.get(CONFIG.API_URL + '/api/user/subscribe',
+    const currentUserId = alt.stores.UsersStore.getCurrentUser().get('id');
+    this.io.socket.get(CONFIG.API_URL + `/api/users/${currentUserId}/subscribe`,
       {access_token: alt.stores.UsersStore.getAuthenticationToken()},
       (data, jwr) => {
         console.log('SOCKET Subscribe', data, jwr);

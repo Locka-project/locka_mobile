@@ -12,7 +12,7 @@ class UsersActions {
   login({identifier, password}) {
     this.actions.loginStart();
     this.dispatch('logging');
-    Api.post('/auth/local/', {identifier, password, api: true})
+    Api.post('/api/auth/local', {identifier, password, api: true})
     .then( (response) => {
       const token = response.get('token');
       const user = response.get('user');

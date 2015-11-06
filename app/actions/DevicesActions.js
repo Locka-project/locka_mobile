@@ -5,13 +5,13 @@ class DevicesActions {
       'fetchDevicesSuccess',
       'createDeviceSuccess',
       'editDeviceSuccess',
-      'deleteDeviceSuccess'
+      'deleteDeviceSuccess',
       'socketReceiveDeviceSuccess'
     );
   }
 
   fetchDevices() {
-    return Api.get('/api/device/getAllDevices', {})
+    return Api.get('/api/devices', {})
     .then( (devices) => {
       this.actions.fetchDevicesSuccess({devices});
     }, (error) => {
@@ -20,7 +20,7 @@ class DevicesActions {
   }
 
   createDevice({deviceName, currentUser}) {
-    return Api.post('/api/device/create', {name: deviceName, user: currentUser})
+    return Api.post('/api/devices/create', {name: deviceName, user: currentUser})
     .then( (device) => {
       this.actions.createDeviceSuccess({device});
     }, (error) => {
@@ -29,7 +29,7 @@ class DevicesActions {
   }
 
   editDevice({deviceId, deviceName}) {
-    return Api.put('/api/device/update', {id: deviceId, name: deviceName})
+    return Api.put(`/api/devices/${deviceId}/update`, {name: deviceName})
       .then( (device) => {
         this.actions.editDeviceSuccess({device: device.first()});
       }, (error) => {
@@ -38,11 +38,11 @@ class DevicesActions {
   }
 
   updateStateDevice({deviceId, deviceState}) {
-    let url = '/api/device/close';
+    let url = `/api/devices/${deviceId}/close`;
     if (deviceState) {
-      url = '/api/device/open';
+      url = `/api/devices/${deviceId}/open`;
     }
-    return Api.put(url, {id: deviceId})
+    return Api.put(url, {})
       .then((device) => {
         this.actions.editDeviceSuccess({device: device.first()});
       }, (error) => {
@@ -51,7 +51,7 @@ class DevicesActions {
   }
 
   deleteDevice({deviceId}) {
-    return Api.delete('/api/device/delete', {id: deviceId})
+    return Api.delete(`/api/devices/${deviceId}/delete`, {})
       .then( (res) => {
         this.actions.deleteDeviceSuccess({deviceId});
       }, (error) => {
