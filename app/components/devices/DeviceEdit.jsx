@@ -1,8 +1,8 @@
-import { View, BackButton, Input, List, Title } from 'reapp-kit';
+import { View, BackButton, Button, Input, List, Title } from 'reapp-kit';
 import DevicesStore from '../../stores/DevicesStore';
 
 class DeviceEdit extends React.Component {
-
+  
   componentDidMount() {
     DevicesStore.listen(this.onChange);
   }
@@ -14,15 +14,20 @@ class DeviceEdit extends React.Component {
   render() {
     const deviceId = this.router().getCurrentParams().deviceId;
     const device = alt.stores.DevicesStore.get(deviceId);
-
     const backButton = (
       <BackButton onTap={() => window.history.back()} stopPropagation>
         Back
       </BackButton>
     );
 
+    const saveButton = <Button chromeless onTap={this.editDevice.bind(this)}>Save</Button>;
+
+    if (!device) {
+      return <View style={{overflow: 'hidden'}} title={[backButton, '...', '']}/>;
+    }
+
     return (
-      <View style={{overflow: 'hidden'}} title={[backButton, device.get('name'), '']}>
+      <View style={{overflow: 'hidden'}} title={[backButton, device.get('name'), saveButton]}>
         <div>
           <form>
             <Title>Name</Title>
@@ -32,10 +37,6 @@ class DeviceEdit extends React.Component {
             <Title>State</Title>
             <List wrap>
               <Input type="checkbox" label={ device.get('state').toUpperCase() } onChange={this.onCheck} checked={ device.get('state') === 'open' } />
-            </List>
-            <br/>
-            <List>
-              <List.Item icon={true} title="Edit" onClick={this.editDevice.bind(this)} />
             </List>
           </form>
         </div>
