@@ -1,17 +1,17 @@
-import { View, Button, BackButton, Input, List, Title } from 'reapp-kit';
+import { View, BackButton, Input, List, Title } from 'reapp-kit';
 
 class DeviceNew extends React.Component {
 
 
   render() {
-
-    var backButton =
+    const backButton = (
       <BackButton onTap={() => window.history.back()} stopPropagation>
         Back
       </BackButton>
+    );
 
     return (
-      <View title={[backButton, 'Device', '']}>
+      <View style={{overflow: 'hidden'}} title={[backButton, 'Device', '']}>
         <div>
           <form>
             <Title>Add device</Title>

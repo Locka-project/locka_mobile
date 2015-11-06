@@ -5,4 +5,5 @@ export default c => ({
   titleBarColor: '#fff',
   titleBarBG: c.dark,
   viewBG: c.light,
+  BarItemSVGFill: 'red',
 });

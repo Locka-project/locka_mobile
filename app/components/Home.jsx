@@ -21,25 +21,25 @@ class Home extends React.Component {
   }
 
   render() {
-    const BarItem = Bar.Item;
+    console.log(this.props);
     return (
       <View
         offsetBottom={49}
         disableScroll={true}
         after={
           <Bar activeIndex={this.state.activeTab}>
-            <BarItem
+            <Bar.Item
               icon={require('reapp-kit/icons/key.svg')}
               iconProps={{style: styles.iconStyles}}
               onTap={() => this.changeTab(0)}>
               Devices
-            </BarItem>
-            <BarItem
+            </Bar.Item>
+            <Bar.Item
               icon={require('reapp-kit/icons/phone.svg')}
               iconProps={{style: styles.iconStyles}}
               onTap={() => this.changeTab(1)}>
               Settings
-            </BarItem>
+            </Bar.Item>
           </Bar>
       }>
         {this.props.child()}
