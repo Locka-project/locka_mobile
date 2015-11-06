@@ -1,9 +1,8 @@
 export default c => ({
-  badgeBG: '#c1c1bb',
+  badgeBG: c.themeColor,
   listBG: '#fff',
   listItemBorderColor: '#c1c1bb',
   titleBarColor: '#fff',
-  titleBarBG: c.dark,
-  viewBG: c.light,
-  BarItemSVGFill: 'red',
+  titleBarBG: c.themeColor,
+  barColorActive: c.themeColor,
 });

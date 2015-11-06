@@ -20,8 +20,14 @@ class Home extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const currentRoutes = this.router().getCurrentRoutes();
+    if (currentRoutes.length >= 3) {
+      this.setState({activeTab: routes.indexOf(currentRoutes[2].name)});
+    }
+  }
+
   render() {
-    console.log(this.props);
     return (
       <View
         offsetBottom={49}

@@ -46,7 +46,7 @@ class DevicesActions {
       .then((device) => {
         this.actions.editDeviceSuccess({device: device.first()});
       }, (error) => {
-        console.log('error editing device', error);
+        console.log('error editing device state', error);
       });
   }
 
@@ -55,7 +55,7 @@ class DevicesActions {
       .then( (res) => {
         this.actions.deleteDeviceSuccess({deviceId});
       }, (error) => {
-        console.log('error editing device', error);
+        console.log('error deleting device', error);
       });
   }
 

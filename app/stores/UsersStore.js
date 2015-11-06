@@ -7,6 +7,10 @@ class UsersStore {
     const savedUsersStore = localstorage.getItem('UsersStore');
     if (savedUsersStore) {
       this.state = Immutable.fromJS(JSON.parse(savedUsersStore).UsersStore);
+      const currentUser = this.state.get('currentUser');
+      setTimeout(() => {
+        alt.actions.UsersActions.fetchCurrentUser();
+      }, 1000);
     } else {
       this.state = Immutable.fromJS({
         currentUser: null,
@@ -36,6 +40,11 @@ class UsersStore {
     this.setState(this.state.set('currentUser', null)
       .set('authToken', null)
       .set('status', ''));
+    this.saveStore();
+  }
+
+  onFetchCurrentUser({user}) {
+    this.setState(this.state.set('currentUser', user));
     this.saveStore();
   }
 

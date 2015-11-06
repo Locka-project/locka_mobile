@@ -20,7 +20,6 @@ class DeviceItem extends React.Component {
   }
 
   onCheck(closed) {
-    console.log('onCheck');
     this.setState({updatingCheckbox: true});
     const deviceId = this.props.device.get('id');
     const deviceState = !closed;
@@ -32,7 +31,6 @@ class DeviceItem extends React.Component {
 
   editDevicePage() {
     if (this.state.updatingCheckbox) { return; }
-    console.log('editDevice');
     this.router().transitionTo('deviceEdit', {deviceId: this.props.device.get('id')});
   }
 }

@@ -4,7 +4,6 @@ export default (ComposedComponent) => {
     static willTransitionTo(transition) {
       console.log('Transition to ' + transition.path, alt.stores.UsersStore.getCurrentUser());
       if (!alt.stores.UsersStore.getCurrentUser()) {
-        console.log('force login');
         transition.redirect('login');
       }
     }

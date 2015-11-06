@@ -21,7 +21,7 @@ class Socket {
       );
 
       this.io.socket.on('device', (response) => {
-        console.log('received device', response.data);
+        console.log('SOCKET received device', response.data);
         const device = Immutable.fromJS(response.data);
         alt.actions.DevicesActions.socketReceiveDeviceSuccess({device});
       });

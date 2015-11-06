@@ -4,10 +4,11 @@ import DevicesList from './devices/DevicesList';
 class Devices extends React.Component {
 
   render() {
-    const addButton = <Button chromeless onTap={this.showNewDevicePage.bind(this)}>Add</Button>;
+    const addButton = <Button isInTitleBar={true} chromeless onTap={this.showNewDevicePage.bind(this)}>Add</Button>;
+    const refreshButton = <Button isInTitleBar={true} chromeless onTap={() => {alt.actions.DevicesActions.fetchDevices();}}>Refresh</Button>;
     return (
       <div {...this.props.viewListProps}>
-          <View style={{overflow: 'hidden'}} title={['', 'Devices', addButton]}>
+          <View style={{overflow: 'hidden'}} title={[refreshButton, 'Devices', addButton]}>
             <DevicesList />
           </View>
           {this.props.child()}
