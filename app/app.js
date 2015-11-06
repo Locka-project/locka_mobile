@@ -4,6 +4,7 @@ import _ from 'lodash';
 import Immutable from 'immutable';
 import Alt from 'alt';
 import Api from 'api/Api';
+import Socket from 'api/Socket';
 
 const config = {
   dev: {
@@ -26,7 +27,7 @@ window.CONFIG = config.dev;
 window.Api = Api;
 // console.log('io', sailsIOClient);
 setTimeout(() => {
-
+  window.Socket = new Socket();
 }, 3000);
 
 
@@ -35,7 +36,7 @@ router(require,
     route('home', '/', { dir: '' },
      route('devices', '/',
        route('deviceNew', '/device/create'),
-       route('deviceEdit', '/device/edit/:deviceId')
+       route('deviceEdit', '/device/:deviceId')
      ),
      route('settings', '/settings')
     ),

@@ -12,16 +12,17 @@ class Socket {
   onConnect() {
     console.log('SOCKET CONNECTED');
 
-    io.socket.get(CONFIG.API_URL + '/api/user/subscribe',
+    this.io.socket.get(CONFIG.API_URL + '/api/user/subscribe',
       {access_token: alt.stores.UsersStore.getAuthenticationToken()},
       (data, jwr) => {
-        console.log('subscribe response', data, jwr);
+        console.log('SOCKET Subscribe', data, jwr);
       }
     );
 
-    this.io.socket.on('device', (data) => {
-      console.log('received device', data);
-      alt.actions.DevicesActions.socketReceiveDevice({device: data});
+    this.io.socket.on('device', (response) => {
+      console.log('received device', response.data);
+      const device = Immutable.fromJS(response.data);
+      alt.actions.DevicesActions.socketReceiveDeviceSuccess({device});
     });
   }
 }
