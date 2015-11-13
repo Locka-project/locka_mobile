@@ -1,12 +1,13 @@
 import { List } from 'reapp-kit';
 import DevicesStore from '../../stores/DevicesStore';
 import DeviceItem from './DeviceItem';
+import DevicesActions from '../../actions/DevicesActions';
 
 class DevicesList extends React.Component {
 
   componentDidMount() {
     DevicesStore.listen(this.onChange);
-    alt.actions.DevicesActions.fetchDevices();
+    DevicesActions.fetchDevices();
   }
 
   componentWillUnmount() {
@@ -21,7 +22,7 @@ class DevicesList extends React.Component {
 
     return (
       <div>
-        <p onClick={() => {alt.actions.DevicesActions.fetchDevices();}}>Your devices</p>
+        <p onClick={() => {DevicesActions.fetchDevices();}}>Your devices</p>
         <List>
           {devicesNodes}
         </List>

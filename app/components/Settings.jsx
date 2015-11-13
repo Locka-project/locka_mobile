@@ -1,5 +1,6 @@
 import { View, List, Label } from 'reapp-kit';
 import UsersStore from '../stores/UsersStore';
+import UsersActions from '../actions/UsersActions';
 
 const styles = {
   logout: {
@@ -42,7 +43,7 @@ class Settings extends React.Component {
   }
 
   logout() {
-    alt.actions.UsersActions.logout();
+    UsersActions.logout();
     this.router().transitionTo('login');
   }
 

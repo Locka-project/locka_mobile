@@ -7,9 +7,9 @@ class UsersStore {
     const savedUsersStore = localstorage.getItem('UsersStore');
     if (savedUsersStore) {
       this.state = Immutable.fromJS(JSON.parse(savedUsersStore).UsersStore);
-      const currentUser = this.state.get('currentUser');
+      // const currentUser = this.state.get('currentUser');
       setTimeout(() => {
-        alt.actions.UsersActions.fetchCurrentUser();
+        UsersActions.fetchCurrentUser();
       }, 1000);
     } else {
       this.state = Immutable.fromJS({

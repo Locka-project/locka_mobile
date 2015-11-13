@@ -1,5 +1,6 @@
 import { View, BackButton, Button, Checkbox, Input, List, Title } from 'reapp-kit';
 import DevicesStore from '../../stores/DevicesStore';
+import DevicesActions from '../../actions/DevicesActions';
 
 class DeviceEdit extends React.Component {
 
@@ -51,20 +52,20 @@ class DeviceEdit extends React.Component {
   }
 
   deleteDevice(deviceId) {
-    alt.actions.DevicesActions.deleteDevice( {deviceId} )
+    DevicesActions.deleteDevice( {deviceId} )
     window.history.back();
   }
 
   onCheck(closed) {
     const deviceId = this.router().getCurrentParams().deviceId;
     const deviceState = !closed;
-    alt.actions.DevicesActions.updateStateDevice({deviceId, deviceState});
+    DevicesActions.updateStateDevice({deviceId, deviceState});
   }
 
   editDevice() {
     const deviceId = this.router().getCurrentParams().deviceId;
     const deviceName = this.refs.name.getDOMNode().value;
-    alt.actions.DevicesActions.editDevice({deviceId, deviceName});
+    DevicesActions.editDevice({deviceId, deviceName});
   }
 }
 

@@ -1,5 +1,6 @@
 import { View, List, Input } from 'reapp-kit';
 import UsersStore from '../stores/UsersStore';
+import UsersActions from '../actions/UsersActions';
 
 const styles = {
   container: {
@@ -38,7 +39,7 @@ class Login extends React.Component {
             </List>
             <br/>
             <List>
-              <List.Item icon={true} title="Login" onClick={this.login.bind(this)} />
+              <List.Item icon={true} title="Login" onTap={this.login.bind(this)} onClick={this.login.bind(this)} />
             </List>
           </form>
         </div>
@@ -47,11 +48,13 @@ class Login extends React.Component {
   }
 
   login() {
+    console.log('logigin');
     const status = alt.stores.UsersStore.getStatus();
     if (status === 'logging') { return; }
     const identifier = this.refs.identifier.getDOMNode().value;
     const password = this.refs.password.getDOMNode().value;
-    alt.actions.UsersActions.login({identifier, password});
+    alert(identifier+'/'+password);
+    UsersActions.login({identifier, password});
   }
 
   onChange() {

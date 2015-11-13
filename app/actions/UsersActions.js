@@ -1,3 +1,5 @@
+import Api from '../api/Api';
+
 class UsersActions {
 
   constructor() {

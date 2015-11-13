@@ -1,4 +1,5 @@
 import { Input, List, Checkbox } from 'reapp-kit';
+import DevicesActions from '../../actions/DevicesActions';
 
 class DeviceItem extends React.Component {
 
@@ -23,7 +24,7 @@ class DeviceItem extends React.Component {
     this.setState({updatingCheckbox: true});
     const deviceId = this.props.device.get('id');
     const deviceState = !closed;
-    alt.actions.DevicesActions.updateStateDevice({deviceId, deviceState});
+    DevicesActions.updateStateDevice({deviceId, deviceState});
     setTimeout(() => {
       this.setState({updatingCheckbox: false});
     }, 200);

@@ -1,5 +1,6 @@
-class Api {
+import UsersActions from '../actions/UsersActions';
 
+class Api {
   static apiFetch(method, path, params) {
     const headers = {
       'X-Requested-With': 'XMLHttpRequest',

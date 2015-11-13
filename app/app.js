@@ -3,8 +3,6 @@ import { React, router, route } from 'reapp-kit';
 import _ from 'lodash';
 import Immutable from 'immutable';
 import Alt from 'alt';
-import Api from 'api/Api';
-import Socket from 'api/Socket';
 
 const config = {
   dev: {
@@ -12,24 +10,23 @@ const config = {
     SOCKET_URL: 'http://localhost:1337',
   },
   prod: {
-    API_URL: 'http://locka',
-    SOCKET_URL: 'http://locka',
+    API_URL: 'http://10.33.1.205:1337',
+    SOCKET_URL: 'http://10.33.1.205:1337',
   },
 };
 
 // globals
-const window = window || global;
+const window = global || global;
 window.React = React;
+window.alt = new Alt();
 window._ = _;
 window.Immutable = Immutable;
-window.alt = new Alt();
-window.CONFIG = config.dev;
-window.Api = Api;
+window.CONFIG = config.prod;
 
+import Socket from './api/Socket';
 setTimeout(() => {
   window.Socket = new Socket();
 }, 2000);
-
 
 router(require,
   route('app', '/', { dir: '' },

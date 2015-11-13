@@ -5,4 +5,5 @@ export default c => ({
   titleBarColor: '#fff',
   titleBarBG: c.themeColor,
   barColorActive: c.themeColor,
+  statusBarHeight: 20,
 });
