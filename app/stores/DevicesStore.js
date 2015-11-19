@@ -41,11 +41,11 @@ class DevicesStore {
   }
 
   onDeleteDeviceSuccess({deviceId}) {
-    var devices = alt.stores.DevicesStore.getDevices();
-    var index = devices.findIndex((d) => {
-      return d.get('id') == deviceId;
+    const devices = alt.stores.DevicesStore.getDevices();
+    const index = devices.findIndex((d) => {
+      return d.get('id') === deviceId;
     });
-    var newList = devices.delete(index);
+    const newList = devices.delete(index);
     this.setState(newList);
   }
 

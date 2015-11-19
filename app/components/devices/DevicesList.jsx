@@ -16,7 +16,9 @@ class DevicesList extends React.Component {
 
   render() {
     const devices = alt.stores.DevicesStore.getDevices();
-    const devicesNodes = devices.map( (device, i) => {
+    const devicesNodes = devices.sort((a, b) => {
+      return a.get('created_at') > b.get('created_at') ? 1 : -1;
+    }).map( (device, i) => {
       return <DeviceItem key={i} device={device}/>;
     });
 

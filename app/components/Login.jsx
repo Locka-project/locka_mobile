@@ -5,6 +5,7 @@ import UsersActions from '../actions/UsersActions';
 const styles = {
   container: {
     background: '-webkit-linear-gradient(90deg, #136a8a 10%, #267871  90%)',
+    overflow: 'hidden',
   },
   form: {
     marginTop: 0,
@@ -29,7 +30,7 @@ class Login extends React.Component {
     const status = alt.stores.UsersStore.getStatus();
     return (
       <View>
-        <div className="fullscreen" style={styles.container}>
+        <div className="fullscreen" style={styles.container} >
           <h1 style={styles.icon}>{'👯'}</h1>
           <p>{status}</p>
           <form style={styles.form}>
@@ -53,7 +54,6 @@ class Login extends React.Component {
     if (status === 'logging') { return; }
     const identifier = this.refs.identifier.getDOMNode().value;
     const password = this.refs.password.getDOMNode().value;
-    alert(identifier+'/'+password);
     UsersActions.login({identifier, password});
   }
 

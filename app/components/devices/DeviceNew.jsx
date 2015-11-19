@@ -18,6 +18,7 @@ class DeviceNew extends React.Component {
             <Title>Add device</Title>
             <List wrap>
               <Input name="name" ref="name" placeholder="Device Name" />
+              <Input name="identifier" ref="identifier" placeholder="Device Identifier" />
             </List>
             <br/>
             <List>
@@ -32,7 +33,8 @@ class DeviceNew extends React.Component {
   createDevice() {
     const currentUser = alt.stores.UsersStore.getCurrentUser();
     const deviceName = this.refs.name.getDOMNode().value;
-    DevicesActions.createDevice({deviceName, currentUser}).then( () => {
+    const identifier = this.refs.identifier.getDOMNode().value;
+    DevicesActions.createDevice({deviceName, identifier, currentUser}).then( () => {
       window.history.back();
     });
   }

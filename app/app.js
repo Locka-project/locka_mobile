@@ -21,7 +21,7 @@ window.React = React;
 window.alt = new Alt();
 window._ = _;
 window.Immutable = Immutable;
-window.CONFIG = config.prod;
+window.CONFIG = config.dev;
 
 import Socket from './api/Socket';
 setTimeout(() => {

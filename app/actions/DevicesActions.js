@@ -21,8 +21,8 @@ class DevicesActions {
     });
   }
 
-  createDevice({deviceName, currentUser}) {
-    return Api.post('/api/devices/create', {name: deviceName, user: currentUser})
+  createDevice({deviceName, identifier, currentUser}) {
+    return Api.post('/api/devices/create', {name: deviceName, identifier, user: currentUser})
     .then( (device) => {
       this.actions.createDeviceSuccess({device});
     }, (error) => {
@@ -33,7 +33,7 @@ class DevicesActions {
   editDevice({deviceId, deviceName}) {
     return Api.put(`/api/devices/${deviceId}/update`, {name: deviceName})
       .then( (device) => {
-        this.actions.editDeviceSuccess({device: device.first()});
+        this.actions.editDeviceSuccess({device});
       }, (error) => {
         console.log('error editing device', error);
       });
@@ -46,7 +46,7 @@ class DevicesActions {
     }
     return Api.put(url, {})
       .then((device) => {
-        this.actions.editDeviceSuccess({device: device.first()});
+        this.actions.editDeviceSuccess({device});
       }, (error) => {
         console.log('error editing device state', error);
       });
@@ -54,7 +54,7 @@ class DevicesActions {
 
   deleteDevice({deviceId}) {
     return Api.delete(`/api/devices/${deviceId}/delete`, {})
-      .then( (res) => {
+      .then( () => {
         this.actions.deleteDeviceSuccess({deviceId});
       }, (error) => {
         console.log('error deleting device', error);
