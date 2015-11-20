@@ -32,7 +32,7 @@ class DeviceItem extends React.Component {
 
   editDevicePage() {
     if (this.state.updatingCheckbox) { return; }
-    this.router().transitionTo('deviceEdit', {deviceId: this.props.device.get('id')});
+    this.router().transitionTo('deviceDetail', {deviceId: this.props.device.get('id')});
   }
 }
 

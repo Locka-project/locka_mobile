@@ -16,6 +16,7 @@ class DevicesList extends React.Component {
 
   render() {
     const devices = alt.stores.DevicesStore.getDevices();
+    console.log('devices', devices.toJS());
     const devicesNodes = devices.sort((a, b) => {
       return a.get('created_at') > b.get('created_at') ? 1 : -1;
     }).map( (device, i) => {

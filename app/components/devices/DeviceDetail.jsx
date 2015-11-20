@@ -1,8 +1,9 @@
 import { View, BackButton, Button, Checkbox, Input, List, Title } from 'reapp-kit';
 import DevicesStore from '../../stores/DevicesStore';
 import DevicesActions from '../../actions/DevicesActions';
+import LogsList from './LogsList';
 
-class DeviceEdit extends React.Component {
+class DeviceDetail extends React.Component {
 
   componentDidMount() {
     DevicesStore.listen(this.onChange);
@@ -41,6 +42,7 @@ class DeviceEdit extends React.Component {
                 titleAfter={<Checkbox  onChange={this.onCheck} checked={ device.get('state') === 'open' }/>}>
               </List.Item>
             </List>
+            <LogsList device={device} />
           </form>
         </div>
       </View>
@@ -52,7 +54,7 @@ class DeviceEdit extends React.Component {
   }
 
   deleteDevice(deviceId) {
-    DevicesActions.deleteDevice( {deviceId} )
+    DevicesActions.deleteDevice({deviceId});
     window.history.back();
   }
 
@@ -69,4 +71,4 @@ class DeviceEdit extends React.Component {
   }
 }
 
-export default DeviceEdit;
+export default DeviceDetail;

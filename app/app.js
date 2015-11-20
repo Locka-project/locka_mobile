@@ -33,7 +33,7 @@ router(require,
     route('home', '/', { dir: '' },
      route('devices', '/',
        route('deviceNew', '/device/create'),
-       route('deviceEdit', '/device/:deviceId')
+       route('deviceDetail', '/device/:deviceId')
      ),
      route('settings', '/settings')
     ),

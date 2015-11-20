@@ -20,10 +20,23 @@ class Socket {
         }
       );
 
+      // this.io.socket.get(CONFIG.API_URL + `/api/logs/subscribe`,
+      //   {access_token: alt.stores.UsersStore.getAuthenticationToken()},
+      //   (data, jwr) => {
+      //     console.log('SOCKET Subscribe', data, jwr);
+      //   }
+      // );
+
       this.io.socket.on('device', (response) => {
         console.log('SOCKET received device', response.data);
         const device = Immutable.fromJS(response.data);
         alt.actions.DevicesActions.socketReceiveDeviceSuccess({device});
+      });
+
+      this.io.socket.on('log', (response) => {
+        console.log('SOCKET received log', response.data);
+        const log = Immutable.fromJS(response.data);
+        alt.actions.LogsActions.socketReceiveLogSuccess({log});
       });
     }
   }
