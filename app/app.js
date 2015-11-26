@@ -10,8 +10,8 @@ const config = {
     SOCKET_URL: 'http://localhost:1337',
   },
   prod: {
-    API_URL: 'http://10.33.1.205:1337',
-    SOCKET_URL: 'http://10.33.1.205:1337',
+    API_URL: 'http://149.12.192.138:1337',
+    SOCKET_URL: 'http://149.12.192.138:1337',
   },
 };
 
@@ -21,7 +21,7 @@ window.React = React;
 window.alt = new Alt();
 window._ = _;
 window.Immutable = Immutable;
-window.CONFIG = config.dev;
+window.CONFIG = config.prod;
 
 import Socket from './api/Socket';
 setTimeout(() => {

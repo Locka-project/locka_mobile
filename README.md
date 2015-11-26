@@ -1,5 +1,32 @@
-This is the repository used to start new reapp apps from the CLI.
+# Locka Mobile
 
-It's copied into a new folder when you run the command `reapp new`.
+### Run
+To run the app locally: (http://localhost:3010)
 
-To see more documentation on reapp, try [our getting started docs](http://reapp.io/start.html).
+```
+reapp run
+```
+
+This include Hot Module Replacement (HMR)
+
+
+### Build
+
+```
+reapp build
+```
+
+### Run on device
+
+The cordova app is added in the `cordova` folder
+To build the ios app:
+
+```
+npm run build-ios
+```
+
+Now open the `.xcodeproj` and run on the device you want
+
+---
+
+#### Enjoy 😘
